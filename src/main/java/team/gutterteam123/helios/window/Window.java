@@ -8,15 +8,18 @@ import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
 
+import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window {
+
+    // The window handle
     private long window;
 
-    public long getWindow() {
+   public long getWindow() {
         return window;
     }
 
@@ -87,5 +90,15 @@ public class Window {
 
         // Make the window visible
         glfwShowWindow(window);
+    }
+
+    public void destroy() {
+        // Free the window callbacks and destroy the window
+        glfwFreeCallbacks(window);
+        glfwDestroyWindow(window);
+
+        // Terminate GLFW and free the error callback
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
     }
 }

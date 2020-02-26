@@ -2,7 +2,7 @@ package team.gutterteam123.helios.entity;
 
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
-import team.gutterteam123.helios.model.HelloWorld;
+import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.model.Model;
 
 import java.io.File;
@@ -17,10 +17,10 @@ public class Airplane extends Entity {
 
     @Override
     public void update() {
-        if (GLFW.glfwGetKey(HelloWorld.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_UP) == GLFW.GLFW_PRESS) {
+        if (GLFW.glfwGetKey(Helios.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_UP) == GLFW.GLFW_PRESS) {
             position.y += 0.075;
         }
-        if (GLFW.glfwGetKey(HelloWorld.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_DOWN) == GLFW.GLFW_PRESS) {
+        if (GLFW.glfwGetKey(Helios.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_DOWN) == GLFW.GLFW_PRESS) {
             position.y -= 0.075;
         }
     }

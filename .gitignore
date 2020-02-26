@@ -83,3 +83,4 @@ fabric.properties
 
 # Costom
 .idea/compiler.xml
+.idea/misc.xml

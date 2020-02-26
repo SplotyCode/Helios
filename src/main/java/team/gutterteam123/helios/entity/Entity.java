@@ -6,7 +6,7 @@ import team.gutterteam123.helios.model.Model;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
 
-public class Entity {
+public class Entity implements IEntity {
 
     protected Vector3f position;
     protected Model model;
