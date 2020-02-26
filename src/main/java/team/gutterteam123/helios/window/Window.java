@@ -2,6 +2,8 @@ package team.gutterteam123.helios.window;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
@@ -43,6 +45,7 @@ public class Window {
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
         });
 
+
         // Get the thread stack and push a new frame
         try ( MemoryStack stack = stackPush() ) {
             IntBuffer pWidth = stack.mallocInt(1); // int*
@@ -64,6 +67,21 @@ public class Window {
 
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);
+
+        // This line is critical for LWJGL's interoperation with GLFW's
+        // OpenGL context, or any context that is managed externally.
+        // LWJGL detects the context that is current in the current thread,
+        // creates the GLCapabilities instance and makes the OpenGL
+        // bindings available for use.
+        GL.createCapabilities();
+
+        // Setup a W
+        glfwSetWindowSizeCallback(window, (l, i, i1) -> {
+            System.out.println(i+ ": " +i1);
+            GL11.glViewport(0,0,i,i1);
+
+        });
+
         // Enable v-sync
         glfwSwapInterval(1);
 
