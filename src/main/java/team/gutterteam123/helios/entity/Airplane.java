@@ -1,27 +1,36 @@
 package team.gutterteam123.helios.entity;
 
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.model.Model;
+import team.gutterteam123.helios.util.MathUtil;
 
 import java.io.File;
 import java.io.IOException;
 
 public class Airplane extends Entity {
 
-    public Airplane() throws IOException {
+    public Airplane() {
         model = new Model(new File("src/main/resources/models/plane.obj"));
         position = new Vector3f(0, 0, 0);
     }
 
     @Override
     public void update() {
-        if (GLFW.glfwGetKey(Helios.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_UP) == GLFW.GLFW_PRESS) {
+        if (Helios.isPressed(GLFW.GLFW_KEY_UP)) {
             position.y += 0.075;
         }
-        if (GLFW.glfwGetKey(Helios.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_DOWN) == GLFW.GLFW_PRESS) {
+        if (Helios.isPressed(GLFW.GLFW_KEY_DOWN)) {
             position.y -= 0.075;
         }
+    }
+
+    @Override
+    public Matrix4f getTransformationMatrix() {
+        Matrix4f transformationMatrix = super.getTransformationMatrix();
+        //MathUtil.rotateMatrix(transformationMatrix, ); TODO rotation??
+        return transformationMatrix;
     }
 }
