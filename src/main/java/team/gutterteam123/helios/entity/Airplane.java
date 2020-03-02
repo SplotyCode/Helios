@@ -5,16 +5,14 @@ import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.model.Model;
-import team.gutterteam123.helios.util.MathUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 public class Airplane extends Entity {
 
     public Airplane() {
-        model = new Model(new File("src/main/resources/models/plane.obj"));
-        position = new Vector3f(0, 0, 0);
+        model = new Model(new File("src/main/resources/models/airbus310.obj"));
+        position = new Vector3f(20, 0, 60);
     }
 
     @Override

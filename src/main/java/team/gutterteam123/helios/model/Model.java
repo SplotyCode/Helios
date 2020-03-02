@@ -3,15 +3,13 @@ package team.gutterteam123.helios.model;
 import lombok.SneakyThrows;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import team.gutterteam123.helios.render.VAO;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.glDrawArrays;
+import static org.lwjgl.opengl.GL11.*;
 
 public class Model {
 
@@ -78,12 +76,13 @@ public class Model {
     }
 
     public void render() {
-        GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+        //GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
         //GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
 
         vao.bind();
         GL20.glEnableVertexAttribArray(0);
         glDrawArrays(GL_TRIANGLES, 0, 3 * faces.size());
+        //glDrawElements(GL_TRIANGLES, 3 * faces.size(), GL_FLOAT, 0);
         GL20.glDisableVertexAttribArray(0);
         vao.unbind();
     }

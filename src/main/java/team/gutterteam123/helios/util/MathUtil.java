@@ -11,4 +11,9 @@ public class MathUtil {
         matrix.rotationZ((float) Math.toRadians(rotation.z));
     }
 
+    public static float normalize360(float degree) {
+        degree = degree % 360;
+        return degree < 0 ? degree + 360 : degree;
+    }
+
 }

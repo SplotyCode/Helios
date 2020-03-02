@@ -33,9 +33,9 @@ public class ModelReader {
 
     public Vector3i readVector3i() {
         return new Vector3i(
-                Integer.valueOf(line[1]), /* x */
-                Integer.valueOf(line[2]), /* y */
-                Integer.valueOf(line[3])  /* z */
+                Integer.valueOf(line[1].split("/")[0]), /* x */
+                Integer.valueOf(line[2].split("/")[0]), /* y */
+                Integer.valueOf(line[3].split("/")[0])  /* z */
         );
     }
 
