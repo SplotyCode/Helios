@@ -33,17 +33,27 @@ public class VAO {
      * The VAO needs to be bound first
      */
     public void store(int attributeIndex, float[] data, int bundleSize, int usage) {
-        int vboID = GL15.glGenBuffers();
-        vbos.add(vboID);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, createVBO());
 
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, data, usage);
         GL20.glVertexAttribPointer(attributeIndex, bundleSize, GL11.GL_FLOAT, false, 0, 0);
+
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
     }
 
     public void store(int attributeIndex, float[] data, int bundleSize) {
         store(attributeIndex, data, bundleSize, GL15.GL_STATIC_DRAW);
+    }
+
+    public void storeIndices(int[] indices) {
+        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, createVBO());
+        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indices, GL15.GL_STATIC_DRAW);
+    }
+
+    protected int createVBO() {
+        int vboID = GL15.glGenBuffers();
+        vbos.add(vboID);
+        return vboID;
     }
 
     public void bind() {
