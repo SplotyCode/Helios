@@ -1,5 +1,6 @@
 package team.gutterteam123.helios.window;
 
+import com.sun.istack.internal.NotNull;
 import lombok.Getter;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -96,6 +97,7 @@ public class Window {
             System.out.println(i+ ": " +i1);
             GL11.glViewport(0,0,i,i1);
             aspectRatio = i / i1;
+            if(Helios.getInstance().getWorld() != null)
             Helios.getInstance().getWorld().reCalcProjectionMatrix();
         });
 
