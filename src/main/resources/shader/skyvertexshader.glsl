@@ -1,6 +1,6 @@
 #version 330 core
 
-in vec3 position;
+layout (location = 0) in vec3 position;
 
 out vec4 worldPosition;
 
@@ -11,5 +11,5 @@ uniform mat4 viewMatrix;
 void main() {
     //projectionMatrix * viewMatrix * transformationMatrix * position
     worldPosition = transformationMatrix * vec4(position, 1.0);
-    gl_Position = projectionMatrix * viewMatrix * worldPosition;
+    gl_Position = projectionMatrix * viewMatrix * transformationMatrix * vec4(position, 1.0);
 }

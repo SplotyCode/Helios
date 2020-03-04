@@ -25,9 +25,12 @@ public class Face {
         int vertexID = position.get(vertex);
         indices[index] = vertexID - 1;
 
-        Vector2f texturePos = textureVertices.get(this.texture.get(vertex) - 1);
-        texture[vertexID * 2] = texturePos.x;
-        texture[vertexID * 2 + 1] = texturePos.y;
+        int textureID = this.texture.get(vertex);
+        if (textureID != 0) {
+            Vector2f texturePos = textureVertices.get(textureID - 1);
+            texture[vertexID * 2] = texturePos.x;
+            texture[vertexID * 2 + 1] = texturePos.y;
+        }
     }
 
 }

@@ -1,12 +1,14 @@
 package team.gutterteam123.helios.render;
 
+import lombok.Getter;
 import org.joml.Matrix4f;
 import team.gutterteam123.helios.Helios;
-import team.gutterteam123.helios.entity.Airplane;
 import team.gutterteam123.helios.entity.IEntity;
+import team.gutterteam123.helios.entity.SkyDome;
 
 import java.util.ArrayList;
 
+@Getter
 public class World {
 
     private Matrix4f projectionMatrix = new Matrix4f();
@@ -16,6 +18,7 @@ public class World {
     private ArrayList<IEntity> entities = new ArrayList<>();
 
     {
+        entities.add(new SkyDome());
         entities.add(Helios.getInstance().getPlane());
     }
 
@@ -46,20 +49,43 @@ public class World {
         staticShader.start();
         staticShader.storeViewMatrix(camera.calculateViewMatrix());
 
+        boolean useStatic = true;
+
         for (IEntity entity : entities) {
-            render(entity);
+            useStatic = render(entity, useStatic);
         }
 
-        staticShader.stop();
+        if (useStatic) {
+            staticShader.stop();
+        }
     }
 
     public void destroy() {
         staticShader.cleanUp();
     }
 
-    private void render(IEntity entity) {
-        staticShader.storeTransformationMatrix(entity.getTransformationMatrix());
+    private boolean render(IEntity entity, boolean useStatic) {
+        if (entity.shader() == null) {
+            if (!useStatic) {
+                staticShader.start();
+            }
+            staticShader.storeTransformationMatrix(entity.getTransformationMatrix());
+        } else {
+            if (useStatic) {
+                staticShader.stop();
+            }
+            entity.shader().start();
+        }
         entity.render();
+        if (entity.shader() != null) {
+            entity.shader().stop();
+            return false;
+        }
+        return true;
+    }
+
+    public Matrix4f getViewProjectionMatrix() {
+        return camera.calculateViewMatrix().mul(projectionMatrix);
     }
 
 }

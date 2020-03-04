@@ -1,19 +1,17 @@
 package team.gutterteam123.helios.render;
 
+import lombok.Getter;
 import org.joml.Matrix4f;
 
-public class StaticShader extends Shader {
+@Getter
+public class SkyDomeShader extends Shader {
 
     private int locationTransformationMatrix;
     private int locationProjectionMatrix;
     private int locationViewMatrix;
 
-    public StaticShader() {
-        super("src/main/resources/shader/staticvertexshader.glsl", "src/main/resources/shader/staticfragmentshader.glsl");
-    }
-
-    public StaticShader(String vertexFile, String fragmentFile) {
-        super(vertexFile, fragmentFile);
+    public SkyDomeShader() {
+        super("src/main/resources/shader/skyvertexshader.glsl", "src/main/resources/shader/skyfragmentshader.glsl");
     }
 
     @Override

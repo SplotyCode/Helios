@@ -49,7 +49,7 @@ public class Helios {
 
     private void loop() throws IOException {
         // Set the clear color
-        glClearColor(0.22f, 0.69f, 0.87f, 1.0f);
+        //glClearColor(0.22f, 0.69f, 0.87f, 1.0f);
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.

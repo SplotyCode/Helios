@@ -81,7 +81,7 @@ public abstract class Shader {
 
     private float[] matrixBuffer = new float[4 * 4];
 
-    protected void loadMatrix(int location, Matrix4f matrix) {
+    public void loadMatrix(int location, Matrix4f matrix) {
         GL20.glUniformMatrix4fv(location, false, matrix.get(matrixBuffer));
     }
 

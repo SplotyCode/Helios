@@ -5,6 +5,8 @@ import org.joml.Vector3f;
 
 public class MathUtil {
 
+    public static final Vector3f ORIGIN = new Vector3f();
+
     public static void rotateMatrix(Matrix4f matrix, Vector3f rotation) {
         matrix.rotationX((float) Math.toRadians(rotation.x));
         matrix.rotationY((float) Math.toRadians(rotation.y));

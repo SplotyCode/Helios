@@ -16,7 +16,7 @@ public class ShaderUtil {
         GL20.glShaderSource(shaderID, FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8));
         GL20.glCompileShader(shaderID);
         if (GL20.glGetShaderi(shaderID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-            System.out.println("Shader failed: " + GL20.glGetShaderInfoLog(shaderID, 500));
+            System.out.println("Shader '" + file + "' failed to load: " + GL20.glGetShaderInfoLog(shaderID, 1000));
         }
         return shaderID;
     }
