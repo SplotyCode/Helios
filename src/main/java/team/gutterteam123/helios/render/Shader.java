@@ -3,6 +3,7 @@ package team.gutterteam123.helios.render;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 /*
@@ -22,9 +23,17 @@ public abstract class Shader {
         GL20.glAttachShader(programID, fragmentShaderID);
         bindAttributes();
         GL20.glLinkProgram(programID);
+        if (GL20.glGetProgrami(programID, GL20.GL_LINK_STATUS) == GL11.GL_FALSE) {
+            ShaderUtil.printShaderLog(getClass().getSimpleName(), "link", programID);
+        }
         GL20.glValidateProgram(programID);
+        if (GL20.glGetProgrami(programID, GL20.GL_VALIDATE_STATUS) == GL11.GL_FALSE) {
+            ShaderUtil.printShaderLog(getClass().getSimpleName(), "validate", programID);
+        }
         getAllUniformLocations();
     }
+
+
 
     protected abstract void getAllUniformLocations();
 
@@ -45,7 +54,6 @@ public abstract class Shader {
     }
 
     public void cleanUp() {
-        stop();
         GL20.glDetachShader(programID, vertexShaderID);
         GL20.glDetachShader(programID, fragmentShaderID);
         GL20.glDeleteShader(vertexShaderID);

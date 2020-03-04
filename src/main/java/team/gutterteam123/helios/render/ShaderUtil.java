@@ -16,9 +16,17 @@ public class ShaderUtil {
         GL20.glShaderSource(shaderID, FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8));
         GL20.glCompileShader(shaderID);
         if (GL20.glGetShaderi(shaderID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-            System.out.println("Shader '" + file + "' failed to load: " + GL20.glGetShaderInfoLog(shaderID, 1000));
+            printShaderLog(file, "compile", type);
         }
         return shaderID;
+    }
+
+    public static void printShaderLog(String shader, String status, int shaderID) {
+        String messages =  GL20.glGetShaderInfoLog(shaderID, 1000);
+        if (messages.length() == 1000) {
+            System.out.println("Shader log exceeds max log size! Print first 1000 chars");
+        }
+        System.out.println("Shader '" + shader + "' failed to " + status + ": " + messages);
     }
 
 }

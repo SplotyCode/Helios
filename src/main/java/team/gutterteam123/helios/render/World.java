@@ -61,6 +61,7 @@ public class World {
     }
 
     public void destroy() {
+        entities.forEach(IEntity::cleanup);
         staticShader.cleanUp();
     }
 
