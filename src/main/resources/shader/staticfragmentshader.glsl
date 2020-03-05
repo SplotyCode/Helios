@@ -1,9 +1,9 @@
 #version 330 core
 
-out vec4 our_Color;
+out vec4 ourColor;
+
+uniform vec4 staticColor = vec4(1, 0, 0, 1);
 
 void main() {
-
-    our_Color = vec4(1, 0, 0, 1);
-
+    ourColor = staticColor;
 }

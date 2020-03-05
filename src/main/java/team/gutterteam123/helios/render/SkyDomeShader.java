@@ -11,7 +11,7 @@ public class SkyDomeShader extends Shader {
     private int locationViewMatrix;
 
     public SkyDomeShader() {
-        super("src/main/resources/shader/skyvertexshader.glsl", "src/main/resources/shader/skyfragmentshader.glsl");
+        super("src/main/resources/shader/staticvertexshader.glsl", "src/main/resources/shader/skyfragmentshader.glsl");
     }
 
     @Override

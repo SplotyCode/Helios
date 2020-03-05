@@ -12,9 +12,7 @@ import team.gutterteam123.helios.util.MathUtil;
 
 import java.io.File;
 
-import static org.lwjgl.opengl.GL11.GL_CCW;
-import static org.lwjgl.opengl.GL11.glFrontFace;
-import static org.lwjgl.opengles.GLES20.GL_CW;
+import static org.lwjgl.opengl.GL11.*;
 
 public class SkyDome implements IEntity {
 
