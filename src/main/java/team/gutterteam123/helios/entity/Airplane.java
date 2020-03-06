@@ -18,7 +18,7 @@ public class Airplane extends Entity {
     @Override
     public void update() {
         if (Helios.isPressed(GLFW.GLFW_KEY_UP)) {
-            position.y += 0.075;
+            position.y += 0.1;
         }
         if (Helios.isPressed(GLFW.GLFW_KEY_DOWN)) {
             position.y -= 0.075;

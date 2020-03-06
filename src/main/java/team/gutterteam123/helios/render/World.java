@@ -5,6 +5,7 @@ import org.joml.Matrix4f;
 import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.entity.IEntity;
 import team.gutterteam123.helios.entity.SkyDome;
+import team.gutterteam123.helios.terrain.Terrain;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,8 @@ public class World {
     private StaticShader staticShader = new StaticShader();
 
     private ArrayList<IEntity> entities = new ArrayList<>();
+
+    private Terrain terrain = new Terrain();
 
     {
         entities.add(new SkyDome());
@@ -46,6 +49,7 @@ public class World {
     }
 
     public void render() {
+        terrain.render();
         staticShader.start();
         staticShader.storeViewMatrix(camera.calculateViewMatrix());
 
@@ -63,6 +67,7 @@ public class World {
     public void destroy() {
         entities.forEach(IEntity::cleanup);
         staticShader.cleanUp();
+        terrain.cleanup();
     }
 
     private boolean render(IEntity entity, boolean useStatic) {
