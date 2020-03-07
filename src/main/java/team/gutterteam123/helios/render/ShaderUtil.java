@@ -23,13 +23,18 @@ public class ShaderUtil {
 
     public static void printShaderLog(String shader, String status, int shaderID) {
         String messages =  GL20.glGetShaderInfoLog(shaderID, 1000);
-        if (messages.isEmpty()) {
-            messages = GL20.glGetProgramInfoLog(shaderID, 1000);
-        }
         if (messages.length() == 100) {
             System.out.println("Shader log exceeds max log size! Print first 1000 chars");
         }
         System.out.println("Shader '" + shader + "' failed to " + status + ": " + messages);
+    }
+
+    public static void printProgramLog(Shader shader, String status, int shaderID) {
+        String messages =  GL20.glGetProgramInfoLog(shaderID, 1000);
+        if (messages.length() == 100) {
+            System.out.println("Shader log exceeds max log size! Print first 1000 chars");
+        }
+        System.out.println("Shader '" + shader.getClass().getSimpleName() + "' failed to " + status + ": " + messages);
     }
 
 }

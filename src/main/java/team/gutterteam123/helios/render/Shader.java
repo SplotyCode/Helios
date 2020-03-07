@@ -25,11 +25,11 @@ public abstract class Shader {
         bindAttributes();
         GL20.glLinkProgram(programID);
         if (GL20.glGetProgrami(programID, GL20.GL_LINK_STATUS) == GL11.GL_FALSE) {
-            ShaderUtil.printShaderLog(getClass().getSimpleName(), "link", programID);
+            ShaderUtil.printProgramLog(this, "link", programID);
         }
         GL20.glValidateProgram(programID);
         if (GL20.glGetProgrami(programID, GL20.GL_VALIDATE_STATUS) == GL11.GL_FALSE) {
-            ShaderUtil.printShaderLog(getClass().getSimpleName(), "validate", programID);
+            ShaderUtil.printProgramLog(this, "validate", programID);
         }
         getAllUniformLocations();
     }
