@@ -9,8 +9,5 @@
         <module name="Helios" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Helios" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
