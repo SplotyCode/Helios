@@ -11,7 +11,8 @@ import java.io.File;
 public class Airplane extends Entity {
 
     public Airplane() {
-        model = new Model(new File("src/main/resources/models/Airbus A310.obj"));
+        model = new Model(new File("src/main/resources/models/Airbus A310.obj"),
+                new File("src/main/resources/models/Airbus A310.mtl"));
         position = new Vector3f(20, 0, 20);
     }
 

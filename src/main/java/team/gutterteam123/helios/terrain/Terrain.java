@@ -4,16 +4,10 @@ import lombok.SneakyThrows;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
-import org.lwjgl.stb.STBImage;
-import org.lwjgl.system.MemoryStack;
 import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.render.VAO;
 
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 import java.util.Random;
-
-import static org.lwjgl.system.MemoryStack.stackPush;
 
 public class Terrain {
 

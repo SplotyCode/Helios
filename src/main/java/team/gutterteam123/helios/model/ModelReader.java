@@ -17,8 +17,15 @@ public class ModelReader {
         reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
     }
 
+    public String getArgument(int index) {
+        return currentLine[index];
+    }
+
     public String nextCommand() throws IOException {
         String fullLine = reader.readLine();
+        while (fullLine != null && (fullLine.startsWith("#") || fullLine.isEmpty())) {
+            fullLine = reader.readLine();
+        }
         if (fullLine == null) {
             return null;
         }
@@ -69,6 +76,22 @@ public class ModelReader {
             face.getTexture().setComponent(index, Integer.parseInt(texture));
         }
         //TODO normals???
+    }
+
+    public float readFloat(int index) {
+        return Float.valueOf(currentLine[index]);
+    }
+
+    public float readFloat() {
+        return readFloat(1);
+    }
+
+    public int readInt(int index) {
+        return Integer.valueOf(currentLine[index]);
+    }
+
+    public int readInt() {
+        return readInt(1);
     }
 
 }
