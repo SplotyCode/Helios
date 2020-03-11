@@ -27,17 +27,24 @@ public class Model {
     private VAO vao = new VAO();
 
     @SneakyThrows
+    public Model(File file) {
+        this(file, null);
+    }
+
+    @SneakyThrows
     public Model(File file, File mtlFile) {
-        ModelReader mtlReader = new ModelReader(mtlFile);
-        String mtlCommand;
-        Material material = null;
-        while ((mtlCommand = mtlReader.nextCommand()) != null) {
-            if (mtlCommand.equals("newmtl")) {
-                material = new Material(mtlReader.getArgument(1));
-            } else if (material != null) {
-                material.readCommand(mtlReader, mtlCommand);
-            } else {
-                System.out.println("Unexpected command: " + mtlCommand + " expected newmtl");
+        if (mtlFile != null) {
+            ModelReader mtlReader = new ModelReader(mtlFile);
+            String mtlCommand;
+            Material material = null;
+            while ((mtlCommand = mtlReader.nextCommand()) != null) {
+                if (mtlCommand.equals("newmtl")) {
+                    material = new Material(mtlReader.getArgument(1));
+                } else if (material != null) {
+                    material.readCommand(mtlReader, mtlCommand);
+                } else {
+                    System.out.println("Unexpected command: " + mtlCommand + " expected newmtl");
+                }
             }
         }
 
