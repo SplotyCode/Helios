@@ -5,15 +5,18 @@ import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.model.Model;
+import team.gutterteam123.helios.util.MathUtil;
 
 import java.io.File;
 
 public class Airplane extends Entity {
+    private Vector3f rotationVector;
 
     public Airplane() {
         model = new Model(new File("src/main/resources/models/Airbus A310.obj"),
                 new File("src/main/resources/models/Airbus A310.mtl"));
         position = new Vector3f(20, 0, 20);
+        rotationVector = new Vector3f(0,0,0);
     }
 
     @Override
@@ -23,6 +26,10 @@ public class Airplane extends Entity {
         }
         if (Helios.isPressed(GLFW.GLFW_KEY_DOWN)) {
             position.y -= 0.075;
+        }
+        if(Helios.isPressed(GLFW.GLFW_KEY_LEFT)){
+            rotationVector.x += 10;
+            MathUtil.rotateMatrix(getTransformationMatrix(),rotationVector);
         }
     }
 
