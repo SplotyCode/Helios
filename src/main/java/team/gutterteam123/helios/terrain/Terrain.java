@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Terrain {
 
-    private static final int MAP_SIZE = 100;
+    private static final int MAP_SIZE = 1000;
     private static final int INDICES_SIZE = 6 * (MAP_SIZE - 1) * (MAP_SIZE);
 
     private TerrainShader shader = new TerrainShader();

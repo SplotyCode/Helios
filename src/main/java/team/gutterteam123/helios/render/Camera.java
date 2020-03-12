@@ -3,7 +3,6 @@ package team.gutterteam123.helios.render;
 import lombok.Getter;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
 import team.gutterteam123.helios.Helios;
 import team.gutterteam123.helios.util.MathUtil;
 
