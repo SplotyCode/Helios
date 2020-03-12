@@ -21,6 +21,7 @@ public class Airplane extends Entity {
 
     @Override
     public void update() {
+        //position.x+= 0.001/Math.sin(rotationVector.y/360);
         if (Helios.isPressed(GLFW.GLFW_KEY_UP)) {
             position.y += 0.1;
             if((rotationVector.x>-30))
@@ -34,8 +35,14 @@ public class Airplane extends Entity {
 
         }
         if(Helios.isPressed(GLFW.GLFW_KEY_LEFT)){
-
-            MathUtil.rotateMatrix(getTransformationMatrix(),rotationVector);
+            if(rotationVector.z>-30)
+                rotationVector.z-=1;
+            rotationVector.y-=1;
+        }
+        if(Helios.isPressed(GLFW.GLFW_KEY_RIGHT)){
+            if(!(rotationVector.z>30))
+                rotationVector.z+=1;
+            rotationVector.y+=1;
         }
     }
 
@@ -43,7 +50,8 @@ public class Airplane extends Entity {
     public Matrix4f getTransformationMatrix() {
         Matrix4f transformationMatrix = super.getTransformationMatrix();
         transformationMatrix.rotate((float) Math.toRadians(rotationVector.x), new Vector3f(1, 0, 0));
-
+        transformationMatrix.rotate((float) Math.toRadians(rotationVector.y), new Vector3f(0,1,0));
+        transformationMatrix.rotate((float) Math.toRadians(rotationVector.z), new Vector3f(0,0,1));
         return transformationMatrix;
     }
 }
